@@ -1,8 +1,6 @@
 package Domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -12,10 +10,14 @@ import java.io.Serializable;
  * @author santiago.alvarezp@udea.edu.co
  *
  * @param <T>
+ *     Tipo de objeto de respuesta.
  */
-@NoArgsConstructor
+
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class ResponseDto<T> implements Serializable {
 
     private int status;
@@ -23,21 +25,8 @@ public class ResponseDto<T> implements Serializable {
     private String responseMessage;
     private T data;
 
-
-    public ResponseDto(int status, String responseCode, String responseMessage, T data) {
-        this.status = status;
-        this.responseCode = responseCode;
-        this.responseMessage = responseMessage;
-        this.data = data;
-    }
-
     public ResponseDto(int status, String responseCode, String responseMessage) {
         this(status, responseCode, responseMessage, null);
     }
 
-    @Override
-    public String toString() {
-        return "ResponseDto{" + "status=" + status + ", responseCode='" + responseCode + '\'' + ", responseMessage='" + responseMessage
-                + '\'' + ", data=" + data + '}';
-    }
 }

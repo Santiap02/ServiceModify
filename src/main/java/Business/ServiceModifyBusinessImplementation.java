@@ -20,7 +20,6 @@ import java.io.IOException;
 
 @Service
 @AllArgsConstructor
-
 public class ServiceModifyBusinessImplementation implements ServiceModifyBusiness {
     /** Logger */
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceModifyBusiness.class);
@@ -29,7 +28,10 @@ public class ServiceModifyBusinessImplementation implements ServiceModifyBusines
     /** Objeto para acceder a la capa de datos de fotos */
     private final PhotoRepository photoRepository;
 
-
+    /**
+     *
+      * @see ServiceModifyBusiness#updateClient(Cliente)
+     */
     @Override
     public ResponseDto<String> updateClient(Cliente cliente) {
         LOGGER.debug("Se inicia updateClient");
@@ -44,15 +46,14 @@ public class ServiceModifyBusinessImplementation implements ServiceModifyBusines
         LOGGER.debug("updateClient retorna: "+response);
         return  response;
     }
-
-
-
+    /**
+     *
+     * @see ServiceModifyBusiness#updatePhoto(int, MultipartFile)
+     */
     @Override
     public ResponseDto<String> updatePhoto(int clientId, MultipartFile file) throws IOException {
         LOGGER.debug("Se inicia updatePhoto");
-
         ResponseDto<String> response = new ResponseDto<>();
-
         try {
             var photo = photoRepository.findByClientId(clientId);
             if(photo==null){
@@ -68,8 +69,6 @@ public class ServiceModifyBusinessImplementation implements ServiceModifyBusines
         }
         LOGGER.debug("updatePhoto retorna: "+ response);
         return  response;
-
     }
-
 
 }

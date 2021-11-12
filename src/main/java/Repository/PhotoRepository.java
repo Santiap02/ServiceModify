@@ -12,7 +12,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PhotoRepository extends MongoRepository<Photo, String> {
+
     Photo findByClientId(int title);
-    //void deleteByClientId(int clientId);
+
 }
 
