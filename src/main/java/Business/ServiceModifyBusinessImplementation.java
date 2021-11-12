@@ -6,11 +6,13 @@ import Model.Photo;
 import Repository.ClientRepository;
 import Repository.PhotoRepository;
 import Util.ServiceConstants;
+import com.example.ApplicationConfig.SwaggerConfig;
 import lombok.AllArgsConstructor;
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +29,8 @@ public class ServiceModifyBusinessImplementation implements ServiceModifyBusines
     private final ClientRepository clientRepository;
     /** Objeto para acceder a la capa de datos de fotos */
     private final PhotoRepository photoRepository;
+
+    private final SwaggerConfig swaggerConfig;
 
     /**
      *
