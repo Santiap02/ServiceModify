@@ -1,7 +1,8 @@
-package com.example.ApplicationConfig;
+package com.example.applicationConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -9,32 +10,22 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@EnableWebSecurity
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     //definición roles y usuarios
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-
                 .inMemoryAuthentication()
-                .withUser("user1").password("{noop}user1") //lo de {noop} se pone para no obligar a usar mecanismo de encriptación
+                .withUser("user1").password("{noop}user1")
                 .roles("USER")
                 .and()
                 .withUser("admin")
                     .password("{noop}admin")
                     .roles("USER", "ADMIN");
 
-
-		/*la seguiente configuración será para el caso de
-		 * usuarios en una base de datos
-		 * auth.jdbcAuthentication().dataSource(dataSource)
-        	.usersByUsernameQuery("select username, password, enabled"
-            	+ " from users where username=?")
-        	.authoritiesByUsernameQuery("select username, authority "
-            	+ "from authorities where username=?");
-		 */
     }
     //definición de políticas de seguridad
     @Override
@@ -43,8 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .authorizeRequests()
                 //solo los miembros del rol admin podrán realizar altas
                 //y para ver la lista de contactos, tendrán que estar autenticados
-                //.antMatchers(HttpMethod.POST,"/clientes/photos").hasRole("ADMIN")
-                .antMatchers("/clientes").authenticated()
+                .antMatchers(HttpMethod.PUT,"/photos/update").authenticated()
+                .antMatchers(HttpMethod.PUT,"/clientes/actualizar/").authenticated()
                 //.antMatchers("/**").authenticated()
                 //.antMatchers("/contactos/**").authenticated()
                 .and()

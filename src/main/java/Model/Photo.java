@@ -1,10 +1,4 @@
 package Model;
-/**
- * Modelo para la conexion a la base de datos "Test4" coleccion imagenes.
- *
- * @author santiago.alvarezp@udea.edu.co
- *
- */
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +7,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Modelo para la conexion a la base de datos "Test4" coleccion imagenes.
+ *
+ * @author santiago.alvarezp@udea.edu.co
+ *
+ */
 @Getter
 @NoArgsConstructor
 @Document(collection = "images")

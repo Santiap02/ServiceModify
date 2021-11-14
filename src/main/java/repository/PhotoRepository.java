@@ -1,4 +1,4 @@
-package Repository;
+package repository;
 
 import Model.Photo;
 import org.springframework.data.mongodb.repository.MongoRepository;

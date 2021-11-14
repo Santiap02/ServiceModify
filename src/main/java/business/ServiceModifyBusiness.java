@@ -1,10 +1,8 @@
-package Business;
+package business;
 
-import Domain.ResponseDto;
+import domain.ResponseDto;
 import Model.Cliente;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 /**
  * Interface donde se definen las operaciones a implementar para el proceso modificacion de informacion de clientes
@@ -14,20 +12,22 @@ import java.io.IOException;
  */
 
 public interface ServiceModifyBusiness {
-    /**
-     * Permite actualizar un cliente
-     * @return Respuesta lista de objetos Cliente
-     */
 
-    ResponseDto updateClient(Cliente cliente);
+    /**
+     * Permite actualizar un cliente existente.
+     *
+     * @param cliente Datos del cliente para actualizar.
+     * @return Objeto de respuesta con el mensaje de log.
+     */
+    ResponseDto<String> updateClient(Cliente cliente);
+
     /**
      * Permite actualizar una foto asignada a un cliente
      *
      * @param clientId Identificacion del usuario
      * @param file     Archivo de imagen
-     * @return Objeto de respuesta ResponseDto con
+     * @return Objeto de respuesta con el mensaje de log.
      */
-    ResponseDto<String> updatePhoto(int clientId, MultipartFile file) throws IOException;
-
+    ResponseDto<String> updatePhoto(int clientId, MultipartFile file);
 
 }
