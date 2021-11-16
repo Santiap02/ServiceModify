@@ -7,6 +7,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Modelo para la conexion a la base de datos "Test4" coleccion imagenes.
  *
@@ -17,12 +19,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Document(collection = "images")
 public class Photo {
+
     @Id
     private String id;
 
+    @NotNull
     @Indexed(unique = true)
     private int clientId;
 
+    @NotNull
     private Binary image;
 
     public Photo(int clientId) {

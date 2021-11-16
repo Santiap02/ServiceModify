@@ -24,6 +24,7 @@ public class ServiceModifyRest {
     @Operation(summary = "Actualizar datos de un cliente", description = "Permite actualizar los datos de un cliente")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Cliente guardado exitosamente", response = ResponseDto.class),
+            @ApiResponse(code = 400, message = "Solicitud incorrecta. Por favor valide los datos enviados.", response = ResponseDto.class),
             @ApiResponse(code = 500, message = "Error inesperado durante el proceso", response = ResponseDto.class) })
     @PutMapping(value="clientes/actualizar/",consumes=MediaType.APPLICATION_JSON_VALUE)
     public ResponseDto<String> updateClient(@Parameter(name = "cliente", required = true, description = "Nuevos datos del cliente", schema = @Schema(implementation = Cliente.class), in = ParameterIn.QUERY)@RequestBody Cliente client) {
@@ -32,6 +33,7 @@ public class ServiceModifyRest {
     @Operation(summary = "Actualizar foto de un cliente", description = "Permite actualizar la foto de un cliente")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Cliente guardado exitosamente", response = ResponseDto.class),
+            @ApiResponse(code = 400, message = "Solicitud incorrecta. Por favor valide los datos enviados.", response = ResponseDto.class),
             @ApiResponse(code = 500, message = "Error inesperado durante el proceso", response = ResponseDto.class) })
     @PutMapping("/photos/update")
     public ResponseDto<String> updatePhoto(@Parameter(name = "clientId", required = true, description = "Id del cliente a actualizar", schema = @Schema(implementation = int.class), in = ParameterIn.QUERY)@RequestParam("clientId") int clientId,

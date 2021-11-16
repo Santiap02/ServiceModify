@@ -1,8 +1,10 @@
 package business;
 
+import Util.ValidationUtils;
 import domain.ResponseDto;
 import Model.Cliente;
 import Model.Photo;
+import exception.ServiceException;
 import repository.ClientRepository;
 import repository.PhotoRepository;
 import Util.ServiceConstants;
@@ -25,7 +27,8 @@ public class ServiceModifyBusinessImplementation implements ServiceModifyBusines
     private final ClientRepository clientRepository;
     /** Objeto para acceder a la capa de datos de fotos */
     private final PhotoRepository photoRepository;
-
+    /** Validador*/
+    private final ValidationUtils validationUtils;
 
     /**
      *
@@ -36,8 +39,12 @@ public class ServiceModifyBusinessImplementation implements ServiceModifyBusines
         LOGGER.debug("Se inicia updateClient");
         ResponseDto<String> response;
         try {
+            validationUtils.validate(cliente);
             clientRepository.save(cliente);
             response = new ResponseDto<>(HttpStatus.OK.value(), ServiceConstants.SA002, ServiceConstants.SA002M);
+        }catch (ServiceException e){
+            LOGGER.error("Error in updateClient", e);
+            response = new ResponseDto<>(e.getStatus(), e.getCode(), e.getMessage());
         }catch (Exception e){
             LOGGER.error("Error in updateClient", e);
             response = new ResponseDto<>(HttpStatus.INTERNAL_SERVER_ERROR.value(), ServiceConstants.SA100, ServiceConstants.SA100M);

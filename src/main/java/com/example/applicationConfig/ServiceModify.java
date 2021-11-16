@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EntityScan(basePackages = {"Model"})
 @EnableJpaRepositories(basePackages = {"repository"})
 @EnableMongoRepositories(basePackages = {"repository"})
-@ComponentScan(basePackages = {"rest", "Model", "business", "repository", "com.example.applicationConfig"})
+@ComponentScan(basePackages = {"rest", "Model", "business", "repository", "com.example.applicationConfig", "Util"})
 public class ServiceModify {
 
     public static void main(String[] args) {
