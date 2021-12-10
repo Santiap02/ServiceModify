@@ -2,6 +2,7 @@ package rest;
 
 import Model.Cliente;
 import business.ServiceModifyBusiness;
+import domain.ClienteDto;
 import domain.ResponseDto;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -27,8 +28,8 @@ public class ServiceModifyRest {
             @ApiResponse(code = 400, message = "Solicitud incorrecta. Por favor valide los datos enviados.", response = ResponseDto.class),
             @ApiResponse(code = 500, message = "Error inesperado durante el proceso", response = ResponseDto.class) })
     @PutMapping(value="clientes/actualizar/",consumes=MediaType.APPLICATION_JSON_VALUE)
-    public ResponseDto<String> updateClient(@Parameter(name = "cliente", required = true, description = "Nuevos datos del cliente", schema = @Schema(implementation = Cliente.class), in = ParameterIn.QUERY)@RequestBody Cliente client) {
-        return this.serviceModifyBusiness.updateClient(client);
+    public ResponseDto<String> updateClient(@Parameter(name = "cliente", required = true, description = "Nuevos datos del cliente", schema = @Schema(implementation = Cliente.class), in = ParameterIn.QUERY)@RequestBody ClienteDto clienteDto) {
+        return this.serviceModifyBusiness.updateClient(clienteDto);
     }
     @Operation(summary = "Actualizar foto de un cliente", description = "Permite actualizar la foto de un cliente")
     @ApiResponses(value = {

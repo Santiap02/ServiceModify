@@ -1,5 +1,6 @@
 package business;
 
+import domain.ClienteDto;
 import domain.ResponseDto;
 import Model.Cliente;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,10 +17,10 @@ public interface ServiceModifyBusiness {
     /**
      * Permite actualizar un cliente existente.
      *
-     * @param cliente Datos del cliente para actualizar.
+     * @param clienteDto Datos del cliente para actualizar.
      * @return Objeto de respuesta con el mensaje de log.
      */
-    ResponseDto<String> updateClient(Cliente cliente);
+    ResponseDto<String> updateClient(ClienteDto clienteDto);
 
     /**
      * Permite actualizar una foto asignada a un cliente

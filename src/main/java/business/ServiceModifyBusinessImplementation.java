@@ -1,6 +1,8 @@
 package business;
 
+import Util.ClienteMapper;
 import Util.ValidationUtils;
+import domain.ClienteDto;
 import domain.ResponseDto;
 import Model.Cliente;
 import Model.Photo;
@@ -29,15 +31,18 @@ public class ServiceModifyBusinessImplementation implements ServiceModifyBusines
     private final PhotoRepository photoRepository;
     /** Validador*/
     private final ValidationUtils validationUtils;
+    /** Mapper*/
+    private final ClienteMapper clienteMapper;
 
     /**
      *
-      * @see ServiceModifyBusiness#updateClient(Cliente)
+      * @see ServiceModifyBusiness#updateClient(ClienteDto)
      */
     @Override
-    public ResponseDto<String> updateClient(Cliente cliente) {
+    public ResponseDto<String> updateClient(ClienteDto clienteDto) {
         LOGGER.debug("Se inicia updateClient");
         ResponseDto<String> response;
+        Cliente cliente = clienteMapper.clienteDtoToCliente(clienteDto);
         try {
             validationUtils.validate(cliente);
             clientRepository.save(cliente);
